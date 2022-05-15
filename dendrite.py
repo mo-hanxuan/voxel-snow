@@ -9,12 +9,12 @@
 
 import taichi as ti
 import numpy as np
-# ti.init(arch=ti.cuda)
+ti.init(arch=ti.cuda)
 
 
 @ti.data_oriented
-class Dendritic:
-    def __init__(self, dx=0.03, n=512, dtype=ti.f64):
+class Dendrite:
+    def __init__(self, dx=0.03, n=512, dtype=ti.f64, anisoMode=6, angle0=0.):
         self.n = n
         self.phi = ti.field(dtype=dtype, shape=(n, n))
         self.phiNew = ti.field(dtype=dtype, shape=(n, n))
@@ -31,12 +31,12 @@ class Dendritic:
         self.mu = 1.0
         self.k = 1.5   # 1.5 latent heat coefficient
         self.delta = 0.12  # 0.02 the strength of anisotropy
-        self.anisoMod = 6.   # mode number of anisotropy
+        self.anisoMod = anisoMode   # mode number of anisotropy
         self.alpha = 0.9 / np.pi  # 0.9 ^( *)([a-zA-Z])
         self.gamma = 10.0
         self.teq = 1.0  # temperature of equilibrium
         self.mo = 1. / self.tau  # mobility
-        self.angle0 = 0.  # np.pi / 18. * 1.5
+        self.angle0 = angle0  # np.pi / 18. * 1.5
         self.showFrameFrequency = 16
         self.writeImages = "n"
 
@@ -157,12 +157,12 @@ class Dendritic:
         self.updateVariables()
 
 
-    def getDendritic(self, ):
+    def getDendritic(self, steps=2049):
         self.initializeVariables()
         gui_tp = ti.GUI("temperature field", res=(self.n, self.n))
         gui_phi = ti.GUI("phase field", res=(self.n, self.n))
 
-        for i in range(1025):
+        for i in range(steps):
             
             if i % self.showFrameFrequency == 0:
                 gui_tp.set_image(self.tp)
@@ -182,21 +182,4 @@ class Dendritic:
 
 if __name__ == "__main__":
     
-    dendritic = Dendritic(n=512)
-    dendritic.initializeVariables()
-    gui_tp = ti.GUI("temperature field", res=(dendritic.n, dendritic.n))
-    gui_phi = ti.GUI("phase field", res=(dendritic.n, dendritic.n))
-
-    for i in range(1000000):
-        
-        if i % dendritic.showFrameFrequency == 0:
-            gui_tp.set_image(dendritic.tp)
-            gui_tp.show()
-            gui_phi.set_image(dendritic.phi)
-            gui_phi.show(
-                "./pictures/{}.png".format(i) 
-                    if i % (dendritic.showFrameFrequency * 16) == 0 and dendritic.writeImages == "y" 
-                    else None
-            )
-    
-        dendritic.substeps()
+    Dendrite(n=512).getDendritic(steps=1000000)

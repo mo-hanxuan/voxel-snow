@@ -1,10 +1,45 @@
-# <a name="title">Taichi Voxel Challenge</a>
+# <a name="title">voxel-bitSnow</a>
 
-<p align="center">
-<img src="demo.jpg" width="75%"></img>
-</p>
+Numerical simulation of **snow growing** by solving **partial-differential-equations (PDEs)**. Coupling **phase field** (PF) and **temperature field** to simulate the snow growth. **Fast parallel computing** of PDE by **taichi**.
 
-> Figure: result of `python3 example6.py`. Please replace the image above (`demo.jpg`) with yours, so that other people can immediately see your results :-)
+<p align="left">
+<img src="https://lh3.googleusercontent.com/gp_mebbK7wEasexbIoSj9IA4eAEoEp9TpubWbcXQkvvoto3iBRcCqa2btUOH72GUndLhf9uglRBXV3BO82GakkzRijnG_vFYGCvW=s0" width="64%" align="center"></img>
+</p> 
+
+
+> Fig. 1. [voxel-bitSnow](https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/5025769837641590739412139785757932472560744325011754290274748814264725667841/) growing from numerical simulation by [Taichi](https://github.com/taichi-dev/taichi). 
+
+
+<p align="left">
+<img src="https://lh3.googleusercontent.com/jwvxHMIwhmlabLxNDNPISy-DblPY7GlS6ZDSqDh15YuWB7jwK6ScBf8XZYJaCZT0iGVafOwoMTy4AAG2DlPF8pqgZRSQrSE5uUrX=s0" width="32%" align="center"></img>
+</p> 
+
+
+
+> Fig. 2. [bitSnow growing with 6-fold symmetry](https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/5025769837641590739412139785757932472560744325011754290274748799971074506753): Simulation of snow growing by solving partial-differential-equations (PDEs). **Coupling phase field (PF) and temperature field to simulate the snow growth.** Fast **parallel computing** of partial differential equation (PDE) by **taichi**. For more info, refer to [https://github.com/mo-hanxuan/Snow-Dendrite-Growth](https://github.com/mo-hanxuan/Snow-Dendrite-Growth).
+
+## Basic ideas
+Coupling between **phase field** and **temperature field**, where
+
+1. Phase field solves spatial distribution of solid (snow) and liquid, which considers:
+
+   + anisotropic interface energy
+
+   + temperature-dependent chemical-potential
+
+2. Temperature field, which considers:
+
+   + heat conduction
+
+   + latent heat from solidification
+
+Get the taichi field of snow and convert it to voxels, where the voxels' colors and brightnesses are determined by field values.
+
+We use voxels with glowing material at the boundary of the snow, and set the gray wall at left and bottom to reflect the light and shadow.   
+
+For more info about the simulation model of snow-growing, refer to  [https://github.com/mo-hanxuan/Snow-Dendrite-Growth](https://github.com/mo-hanxuan/Snow-Dendrite-Growth).
+
+## activities
 
 We invite you to create your voxel artwork, by putting your [Taichi](https://github.com/taichi-dev/taichi) code in `main.py`!
 
@@ -48,7 +83,7 @@ to install the dependencies of the voxel renderer.
 ## Quickstart
 
 ```sh
-python3 example1.py  # example2/3/.../7/8.py
+python3 main.py
 ```
 
 Mouse and keyboard interface:
@@ -63,7 +98,3 @@ Mouse and keyboard interface:
 <a href="https://github.com/yuanming-hu/voxel-art"><img src="https://github.com/taichi-dev/public_files/blob/master/voxel-challenge/tree2.jpg" width="45%"></img></a> <a href="https://github.com/neozhaoliang/voxel-challenge"><img src="https://github.com/taichi-dev/public_files/blob/master/voxel-challenge/desktop.jpg" width="45%"></img></a> 
 <a href="https://github.com/maajor/maajor-voxel-challenge"><img src="https://github.com/taichi-dev/public_files/blob/master/voxel-challenge/earring_girl.jpg" width="45%"></img></a>  <a href="https://github.com/rexwangcc/taichi-voxel-challenge"><img src="https://github.com/taichi-dev/public_files/blob/master/voxel-challenge/pika.jpg" width="45%"></img></a> 
 <a href="https://github.com/houkensjtu/qbao_voxel_art"><img src="https://github.com/taichi-dev/public_files/blob/master/voxel-challenge/yinyang.jpg" width="45%"></img></a>  <a href="https://github.com/ltt1598/voxel-challenge"><img src="https://github.com/taichi-dev/public_files/blob/master/voxel-challenge/lang.jpg" width="45%"></img></a> 
-
-## Show your artwork 
-
-Please put your artwork at the beginning of this README file. Replacing the `demo.jpg` file with your creation will do the job.
