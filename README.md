@@ -11,7 +11,7 @@ Numerical simulation of **snow growing** by solving **partial-differential-equat
 
 
 <p align="left">
-<img src="https://lh3.googleusercontent.com/jwvxHMIwhmlabLxNDNPISy-DblPY7GlS6ZDSqDh15YuWB7jwK6ScBf8XZYJaCZT0iGVafOwoMTy4AAG2DlPF8pqgZRSQrSE5uUrX=s0" width="32%" align="center"></img>
+<img src="https://github.com/mo-hanxuan/Snow-Dendrite-Growth/blob/main/README.assets/snow_512x512.gif?raw=true" width="32%" align="center"></img>
 </p> 
 
 
